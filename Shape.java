@@ -1,47 +1,53 @@
-class Shape 
+abstract class Shape 
 {
-    public void draw()
-    {
-        System.out.println("Drawing a Shape");
-    }
-    public void erase()
-    {
-        System.out.println("Erasing a Shape");
-    }
+    public abstract double calculateArea(); 
+    public abstract double calculatePerimeter();
 }
 
-class Circle extends Shape
+class Circle extends Shape 
 {
-    public void draw()
+    private double radius;
+
+    public Circle(double radius) 
     {
-        System.out.println("Drawing a Circle");
+        this.radius = radius; 
     }
-    public void erase()
+ 
+    @Override
+    public double calculateArea() 
     {
-        System.out.println("Erasing a Shape");
+        return Math.PI * radius * radius; 
     }
+
+    @Override
+    public double calculatePerimeter()
+    {
+        return 2 * Math.PI * radius;
+    } 
 }
 
-class Triangle extends Shape
+class Triangle extends Shape 
 {
-    public void draw()
-    {
-        System.out.println("Drawing a Triangle");
-    }
-    public void erase()
-    {
-        System.out.println("Erasing a Triangle");
-    }
-}
+    private double side1; 
+    private double side2; 
+    private double side3;
 
-class Square extends Shape
-{
-    public void draw()
-    {
-        System.out.println("Drawing a Square");
+    public Triangle(double side1, double side2, double side3) 
+    { 
+        this.side1 = side1;
+        this.side2 = side2;
+        this.side3 = side3;
     }
-    public void erase()
+
+    @Override
+    public double calculateArea() 
     {
-        System.out.println("Erasing a Square");
+        double s = (side1 + side2 + side3) / 2;
+        return Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
+    }
+    @Override
+    public double calculatePerimeter() 
+    {
+        return side1 + side2 + side3; 
     }
 }
